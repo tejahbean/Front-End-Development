@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cyber Laws Chatbot</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* ================== Custom CSS Starts ================== */
+    body {
+      font-family: 'Roboto', sans-serif; /* Sets the font style for the page */
+      background-color: #f0f4f8; /* Light grey background for readability */
+      color: #333; /* Dark grey text for contrast */
+    }
+    .chatbox {
+      background-color: #ffffff; /* White background for chat container */
+      border-radius: 10px; /* Rounded corners for modern look */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+      max-width: 600px; /* Limits width to ensure better readability */
+      margin: 50px auto; /* Centers the chatbox */
+      padding: 1.5rem; /* Adds padding for spacing */
+    }
+    .chatbox-header {
+      font-size: 1.5rem;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 1rem; /* Spacing below the header */
+    }
+    .messages {
+      height: 300px; /* Fixed height for message container */
+      overflow-y: auto; /* Enables scrolling when messages overflow */
+      margin-bottom: 1rem;
+      padding: 10px;
+      border: 1px solid #ddd; /* Adds a light border */
+      border-radius: 8px;
+    }
+    .input-group {
+      display: flex; /* Aligns input and button in a row */
+    }
+    .form-control {
+      border-radius: 20px; /* Rounded input field */
+      padding: 10px;
+      flex-grow: 1; /* Makes input take up remaining space */
+    }
+    .btn-send {
+      background-color: #28a745; /* Green button for sending messages */
+      color: white;
+      border: none;
+      border-radius: 20px;
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+    .btn-send:hover {
+      background-color: #218838; /* Darker green on hover for feedback */
+    }
+    .message {
+      margin-bottom: 10px; /* Adds spacing between messages */
+    }
+    .bot-message {
+      text-align: left;
+      color: #5a5a5a;
+    }
+    .user-message {
+      text-align: right;
+      color: #28a745;
+    }
+    .clickable-questions {
+      margin-top: 20px;
+      text-align: center;
+    }
+    .clickable-questions button {
+      margin: 5px;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .clickable-questions button:hover {
+      background-color: #0056b3;
+    }
+    /* ================== Custom CSS Ends ================== */
+  </style>
+</head>
+<body>
+
+<div class="chatbox">
+  <div class="chatbox-header">Cyber Law Chatbot</div>
+  <div class="messages" id="messages"></div>
+  <div class="input-group">
+    <input type="text" id="user-input" class="form-control" placeholder="Ask me about Cyber Laws...">
+    <button class="btn-send" id="send-btn">Send</button>
+  </div>
+  
+  <div class="clickable-questions">
+    <button onclick="askQuestion('What is GDPR?')">What is GDPR?</button>
+    <button onclick="askQuestion('What is CCPA?')">What is CCPA?</button>
+    <button onclick="askQuestion('What is the IT Act?')">What is the IT Act?</button>
+    <button onclick="askQuestion('What is PIPEDA?')">What is PIPEDA?</button>
+    <button onclick="askQuestion('What is the Cybersecurity Law in China?')">Cybersecurity Law in China?</button>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // ================== Custom JavaScript Starts ==================
+  const messagesContainer = document.getElementById("messages");
+  const userInput = document.getElementById("user-input");
+  const sendButton = document.getElementById("send-btn");
+
+  // Dictionary of predefined responses for quick retrieval
+  const cyberLawDatabase = {
+    "What is GDPR?": "The General Data Protection Regulation (GDPR) is a regulation in EU law on data protection and privacy in the European Union and the European Economic Area.",
+    "What is CCPA?": "The California Consumer Privacy Act (CCPA) is a data privacy law that provides California residents with the right to know what personal data is being collected and to access, delete, or opt out of the sale of their data.",
+    "What is the IT Act?": "India's Information Technology Act, 2000, governs cybercrimes and electronic commerce in India. It addresses issues such as hacking, cyber fraud, and identity theft.",
+    "What is PIPEDA?": "The Personal Information Protection and Electronic Documents Act (PIPEDA) is Canada's federal privacy law for private-sector organizations, governing how businesses collect, use, and disclose personal information.",
+    "What is the Cybersecurity Law in China?": "China's Cybersecurity Law, enacted in 2017, aims to regulate online activity, protect critical information infrastructure, and safeguard national security and individual privacy."
+  };
+
+  function appendMessage(message, sender) {
+    const messageElement = document.createElement("div");
+    messageElement.classList.add("message", sender);
+    messageElement.textContent = message;
+    messagesContainer.appendChild(messageElement);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  }
+
+  function getBotResponse(userQuestion) {
+    return cyberLawDatabase[userQuestion] || "Sorry, I don't have an answer for that. Please ask another question about cyber laws!";
+  }
+
+  sendButton.addEventListener("click", function() {
+    const userQuestion = userInput.value.trim();
+    if (userQuestion) {
+      appendMessage(userQuestion, 'user-message');
+      appendMessage(getBotResponse(userQuestion), 'bot-message');
+    }
+    userInput.value = '';
+  });
+
+  function askQuestion(question) {
+    appendMessage(question, 'user-message');
+    appendMessage(getBotResponse(question), 'bot-message');
+  }
+  // ================== Custom JavaScript Ends ==================
+</script>
+
+</body>
+</html>

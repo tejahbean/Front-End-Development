@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Community Discussions - Code & Clause</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    body { background-color: #f8f9fa; }
+    .container { margin-top: 20px; }
+    .discussion-card { 
+      background: white; 
+      padding: 20px; 
+      border-radius: 10px; 
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); 
+      margin-bottom: 20px; 
+    }
+    .comment-box { margin-top: 10px; }
+    .btn { margin-top: 5px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="text-center">Community Discussions</h1>
+    <p class="text-center">Join ongoing discussions on cyber law, AI, and data protection.</p>
+
+    <!-- Existing Discussions -->
+    <div class="discussion-card">
+      <h3>How GDPR is Affecting Businesses</h3>
+      <p>Discuss how businesses are adapting to new data privacy laws.</p>
+      <div class="comment-box">
+        <strong>User1:</strong> GDPR has definitely increased compliance costs for businesses.
+      </div>
+      <div class="comment-box">
+        <strong>User2:</strong> True! But it's also improving data protection for users.
+      </div>
+      <textarea class="form-control mt-2" placeholder="Add a comment..."></textarea>
+      <button class="btn btn-primary btn-sm">Post Comment</button>
+    </div>
+
+    <div class="discussion-card">
+      <h3>Ethical Concerns in AI Development</h3>
+      <p>How do we ensure AI remains ethical and unbiased?</p>
+      <div class="comment-box">
+        <strong>User3:</strong> AI bias is a serious issue. Transparency is key.
+      </div>
+      <div class="comment-box">
+        <strong>User4:</strong> I agree! Also, diverse datasets can help reduce bias.
+      </div>
+      <textarea class="form-control mt-2" placeholder="Add a comment..."></textarea>
+      <button class="btn btn-primary btn-sm">Post Comment</button>
+    </div>
+
+    <div class="discussion-card">
+      <h3>Best Practices for Online Security</h3>
+      <p>What are your top tips for staying safe online?</p>
+      <div class="comment-box">
+        <strong>User5:</strong> Always use two-factor authentication.
+      </div>
+      <div class="comment-box">
+        <strong>User6:</strong> And don’t click on suspicious links!
+      </div>
+      <textarea class="form-control mt-2" placeholder="Add a comment..."></textarea>
+      <button class="btn btn-primary btn-sm">Post Comment</button>
+    </div>
+
+    <!-- Create New Discussion -->
+    <div class="discussion-card">
+      <h3>Start a New Discussion</h3>
+      <textarea class="form-control" id="newDiscussion" placeholder="Enter discussion topic..."></textarea>
+      <button class="btn btn-success mt-2" onclick="addDiscussion()">Post Discussion</button>
+    </div>
+
+    <button class="btn btn-secondary mt-3" onclick="window.location.href='community.html'">Back to Community</button>
+  </div>
+
+  <script>
+    function addDiscussion() {
+      let discussionText = document.getElementById("newDiscussion").value;
+      if (discussionText.trim() === "") return;
+      
+      let newDiscussion = `<div class="discussion-card">
+        <h3>${discussionText}</h3>
+        <p>No comments yet. Be the first to share your thoughts.</p>
+        <textarea class="form-control mt-2" placeholder="Add a comment..."></textarea>
+        <button class="btn btn-primary btn-sm">Post Comment</button>
+      </div>`;
+      
+      $(".container").append(newDiscussion);
+      document.getElementById("newDiscussion").value = "";
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learn More - Code & Clause</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    body { 
+      background-color: #f8f9fa; 
+      transition: background 0.3s, color 0.3s;
+    }
+    .container { margin-top: 20px; }
+    .card {
+      background: white; 
+      padding: 20px; 
+      border-radius: 10px; 
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px; 
+    }
+    .fact-box {
+      font-size: 18px;
+      font-weight: bold;
+      color: navy;
+      animation: fadeIn 1s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .faq-item {
+      cursor: pointer;
+      font-weight: bold;
+      color: #007bff;
+    }
+    .hidden { display: none; }
+    .counter {
+      font-size: 2rem;
+      font-weight: bold;
+      color: green;
+    }
+    .dark-mode {
+      background-color: #222 !important;
+      color: white !important;
+    }
+    .dark-mode .card {
+      background: #333;
+      color: white;
+      border: 1px solid #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="text-center">Learn More</h1>
+    <p class="text-center">Explore key facts, take quizzes, and expand your knowledge on cyber law & AI.</p>
+
+    <!-- Fun Fact Section -->
+    <div class="card">
+      <h3>Did You Know?</h3>
+      <p class="fact-box" id="randomFact">Loading fact...</p>
+      <button class="btn btn-info btn-sm" onclick="newFact()">Get Another Fact</button>
+    </div>
+
+    <!-- Quiz Section -->
+    <div class="card">
+      <h3>Quick Cyber Law Quiz</h3>
+      <p><strong>Question:</strong> What does GDPR stand for?</p>
+      <button class="btn btn-outline-primary btn-sm" onclick="checkAnswer(this, 'A')">A) General Data Protection Regulation</button>
+      <button class="btn btn-outline-primary btn-sm" onclick="checkAnswer(this, 'B')">B) Global Data Privacy Rules</button>
+      <p id="quizResult" class="mt-2"></p>
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="card">
+      <h3>Frequently Asked Questions</h3>
+      <p class="faq-item" onclick="toggleAnswer(1)">▶ What is AI regulation?</p>
+      <p id="faq1" class="hidden">AI regulation refers to laws governing AI ethics, transparency, and accountability.</p>
+
+      <p class="faq-item" onclick="toggleAnswer(2)">▶ How can I protect my data online?</p>
+      <p id="faq2" class="hidden">Use strong passwords, enable two-factor authentication, and avoid public Wi-Fi.</p>
+
+      <p class="faq-item" onclick="toggleAnswer(3)">▶ What is a cyber attack?</p>
+      <p id="faq3" class="hidden">A cyber attack is an attempt to gain unauthorized access to data or disrupt digital services.</p>
+    </div>
+
+    <!-- Animated Statistics -->
+    <div class="card text-center">
+      <h3>Cybersecurity Stats</h3>
+      <p>Global cybercrime damages in 2025:</p>
+      <span class="counter" id="cyberCost">$0</span>
+    </div>
+
+    <!-- Dark Mode Toggle -->
+    <div class="text-center mt-3">
+      <button class="btn btn-dark" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+    </div>
+
+    <button class="btn btn-secondary mt-3" onclick="window.location.href='community.html'">Back to Community</button>
+  </div>
+
+  <script>
+    // Random Fact Generator
+    const facts = [
+      "The GDPR law can fine companies up to 4% of annual revenue for data breaches.",
+      "AI is expected to contribute $15.7 trillion to the global economy by 2030.",
+      "Cybercrime is projected to cost the world $10.5 trillion annually by 2025.",
+      "More than 90% of cyber attacks start with phishing emails.",
+      "Blockchain is being used to improve cybersecurity and prevent data tampering."
+    ];
+    
+    function newFact() {
+      let randomIndex = Math.floor(Math.random() * facts.length);
+      document.getElementById("randomFact").textContent = facts[randomIndex];
+    }
+    newFact();
+
+    // Quiz Answer Checker
+    function checkAnswer(button, answer) {
+      let result = document.getElementById("quizResult");
+      if (answer === "A") {
+        result.textContent = "Correct! GDPR stands for General Data Protection Regulation.";
+        result.style.color = "green";
+      } else {
+        result.textContent = "Incorrect! Try again.";
+        result.style.color = "red";
+      }
+    }
+
+    // FAQ Toggle
+    function toggleAnswer(num) {
+      let answer = document.getElementById("faq" + num);
+      if (answer.classList.contains("hidden")) {
+        answer.classList.remove("hidden");
+      } else {
+        answer.classList.add("hidden");
+      }
+    }
+
+    // Animated Counter
+    function animateCounter(element, start, end, duration) {
+      let range = end - start;
+      let current = start;
+      let increment = range / (duration / 10);
+      let timer = setInterval(() => {
+        current += increment;
+        element.textContent = "$" + Math.floor(current) + "T";
+        if (current >= end) {
+          element.textContent = "$" + end + "T";
+          clearInterval(timer);
+        }
+      }, 10);
+    }
+
+    animateCounter(document.getElementById("cyberCost"), 0, 10.5, 2000);
+
+    // Dark Mode Toggle
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
+    }
+  </script>
+
+</body>
+</html>

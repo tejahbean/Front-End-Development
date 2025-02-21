@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Protection Guidelines</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f8fb;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            color: #0056b3;
+            text-align: center;
+        }
+        p {
+            color: #333;
+            line-height: 1.6;
+        }
+        .guidelines {
+            background: #e6f5e6;
+            padding: 15px;
+            border-left: 5px solid #008000;
+            margin-top: 20px;
+        }
+        .explore-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            text-align: center;
+            background: #0056b3;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .explore-btn:hover {
+            background: #003d82;
+        }
+        .hidden-content {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background: #dff0ff;
+            border-left: 5px solid #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Data Protection Guidelines</h1>
+        <p>Get familiar with the most important data protection laws and regulations worldwide, including GDPR, CCPA, and more.</p>
+        <div class="guidelines">
+            <p>Explore the guidelines to understand how these laws impact businesses and individuals, ensuring compliance and better data security.</p>
+        </div>
+        <button class="explore-btn" onclick="toggleContent()">Explore More</button>
+        <div class="hidden-content" id="hiddenContent">
+            <p>Data protection is essential in today’s digital world. Here are some key points to remember:</p>
+            <ul>
+                <li>Understand your rights under GDPR and CCPA.</li>
+                <li>Ensure businesses comply with data protection laws.</li>
+                <li>Implement strong security measures to protect personal data.</li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        function toggleContent() {
+            var content = document.getElementById("hiddenContent");
+            if (content.style.display === "none" || content.style.display === "") {
+                content.style.display = "block";
+            } else {
+                content.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>

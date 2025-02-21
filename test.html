@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Restaurant Menu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            text-align: center;
+        }
+        .menu-item {
+            cursor: pointer;
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin: 5px;
+            display: inline-block;
+            background-color: #f8f8f8;
+            border-radius: 5px;
+        }
+        .menu-item:hover {
+            background-color: #e0e0e0;
+        }
+        #menu-details {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h2>Restaurant Menu</h2>
+    <div class="menu-item" onclick="showDetails('Pizza', 'A delicious cheese pizza with a crispy crust.', '£8.99')">Pizza</div>
+    <div class="menu-item" onclick="showDetails('Burger', 'A juicy beef burger with fresh lettuce and tomatoes.', '£6.99')">Burger</div>
+    <div class="menu-item" onclick="showDetails('Pasta', 'Classic Italian pasta with rich tomato sauce.', '£7.49')">Pasta</div>
+    
+    <div id="menu-details"></div>
+    
+    <script>
+        function showDetails(name, description, price) {
+            document.getElementById('menu-details').innerHTML = `<p><strong>${name}</strong>: ${description} - <em>${price}</em></p>`;
+        }
+    </script>
+</body>
+</html>
+
+
+
+  

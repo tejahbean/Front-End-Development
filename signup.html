@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up & Login</title>
+    <style>
+        /* General styling for the page */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        /* Styling for the container that holds both forms */
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px 0px #aaa;
+            text-align: center;
+            width: 300px;
+        }
+
+        /* Style for input fields */
+        input {
+            display: block;
+            margin: 10px auto;
+            padding: 8px;
+            width: 80%;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        /* Style for buttons */
+        button {
+            padding: 10px 15px;
+            margin-top: 10px;
+            background: blue;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        /* Button hover effect */
+        button:hover {
+            background: darkblue;
+        }
+
+        /* Error / success message styling */
+        p {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Sign-Up Section -->
+        <h2>Sign Up</h2>
+        <input type="text" id="signup-username" placeholder="Username">
+        <input type="email" id="signup-email" placeholder="Email">
+        <input type="password" id="signup-password" placeholder="Password">
+        <button onclick="signUp()">Sign Up</button>
+
+        <!-- Login Section -->
+        <h2>Login</h2>
+        <input type="text" id="login-username" placeholder="Username">
+        <input type="password" id="login-password" placeholder="Password">
+        <button onclick="login()">Login</button>
+
+        <!-- Message Display -->
+        <p id="message"></p>
+    </div>
+
+    <script>
+        /**
+         * Function to handle user sign-up
+         * - Retrieves input values from the form
+         * - Validates that no fields are empty
+         * - Stores user data in localStorage
+         */
+        function signUp() {
+            let username = document.getElementById("signup-username").value;
+            let email = document.getElementById("signup-email").value;
+            let password = document.getElementById("signup-password").value;
+
+            // Check if all fields are filled
+            if (username === "" || email === "" || password === "") {
+                document.getElementById("message").innerText = "All fields are required!";
+                return;
+            }
+
+            // Store user data as an object
+            let user = {
+                username: username,
+                email: email,
+                password: password
+            };
+
+            // Save user in localStorage using the username as the key
+            localStorage.setItem(username, JSON.stringify(user));
+
+            // Show success message
+            document.getElementById("message").innerText = "Sign-up successful! You can now log in.";
+        }
+
+        /**
+         * Function to handle user login
+         * - Retrieves input values from the form
+         * - Checks if the user exists in localStorage
+         * - Validates password and displays appropriate messages
+         */
+        function login() {
+            let username = document.getElementById("login-username").value;
+            let password = document.getElementById("login-password").value;
+
+            // Retrieve user data from localStorage
+            let storedUser = localStorage.getItem(username);
+
+            if (storedUser) {
+                let user = JSON.parse(storedUser);
+
+                // Check if entered password matches stored password
+                if (user.password === password) {
+                    document.getElementById("message").innerText = "Login successful!";
+                } else {
+                    document.getElementById("message").innerText = "Incorrect password!";
+                }
+            } else {
+                document.getElementById("message").innerText = "User not found!";
+            }
+        }
+    </script>
+
+    <!-- Code Ownership Disclaimer -->
+    <footer>
+        <p style="text-align: center; font-size: 12px; margin-top: 20px;">
+            &copy; 2025 Code & Clause. All rights reserved. This code is provided as-is and should not be used for production authentication without additional security measures.
+        </p>
+    </footer>
+
+</body>
+</html>
